@@ -1,0 +1,38 @@
+﻿<Window x:Class="Task1.Views.WordCounterUI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task1.Views"
+        mc:Ignorable="d"
+        Title="WordCounterUI" Height="250" Width="650">
+    <Grid>
+        <Grid VerticalAlignment="Top" Margin="0,0,0,0" Height="30">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
+                Идентификатор строк
+            </TextBlock>
+            <TextBox x:Name="TB_Identifier" Margin="140,5,100,5"/>
+            <Button x:Name="BTN_Run" HorizontalAlignment="Right" 
+                    Margin="0,5,5,5" Width="90" Content="Подсчитать"
+                    Command="{Binding CalcCommand}" 
+                    CommandParameter="{Binding ElementName=TB_Identifier, Path=Text}"/>
+        </Grid>
+        <Grid Margin="0,30,0,0">
+            <ListBox x:Name="LB_Content" ItemsSource="{Binding Tests}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Background="AliceBlue" Width="{Binding ElementName=LB_Content, Path=Width, Mode=OneWay}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Text="{Binding Name}" Grid.Column="0"/>
+                            <TextBlock Text="{Binding Age}" Grid.Column="1" HorizontalAlignment="Right"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Grid>
+</Window>
