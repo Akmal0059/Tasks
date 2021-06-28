@@ -12,45 +12,39 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Task1.Commands;
+using Task1.Interfaces;
+using Task1.ViewModels;
 
 namespace Task1.Views
 {
     /// <summary>
     /// Interaction logic for WordCounterUI.xaml
     /// </summary>
-    public partial class WordCounterUI : Window
+    public partial class WordCounterUI : Window, IView
     {
-        public List<Test> Tests { get; set; }
-        public ICommand CalcCommand { get; set; }
         public WordCounterUI()
         {
-            Tests = new List<Test>()
-            {
-                new Test()
-                {
-                    Name = "123",
-                    Age = 1
-                },
-                new Test()
-                {
-                    Name = "123",
-                    Age = 1
-                },new Test()
-                {
-                    Name = "123",
-                    Age = 1
-                }
-            };
-            CalcCommand = new CalculateCommand();
             InitializeComponent();
-            DataContext = this;
+            DataContext = new WordCounterViewModel(this);
         }
-    }
-    public class Test
-    {
-        public string Name { get; set; }
-        public int Age { get; set; }
 
+        //public void AppendColoredText(string text, SolidColorBrush color)
+        //{
+        //    var paragraph = RTB_Identifier.Document.Blocks.FirstOrDefault() as Paragraph;
+        //    //RTB_Identifier.Document = new FlowDocument(paragraph);
 
+        //    paragraph.Inlines.Add(new Bold(new Run(text))
+        //    {
+        //        Foreground = color
+        //    });
+        //}
+
+        //public void ClearInputBox()
+        //{
+        //    RTB_Identifier.Document.Blocks.Clear();
+        //    RTB_Identifier.Document.Blocks.Add(new Paragraph());
+        //}
+
+        //public string GetText() => new TextRange(RTB_Identifier.Document.ContentStart, RTB_Identifier.Document.ContentEnd).Text;
     }
 }

@@ -9,26 +9,66 @@
     <Grid>
         <Grid VerticalAlignment="Top" Margin="0,0,0,0" Height="30">
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
-                Идентификатор строк
+                Идентификаторы строк
             </TextBlock>
-            <TextBox x:Name="TB_Identifier" Margin="140,5,100,5"/>
+            <!--<RichTextBox x:Name="RTB_Identifier" Margin="145,5,100,5">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run Text="12321213"/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>-->
+            <TextBox x:Name="TB_Identifier" Margin="145,5,100,5" 
+                     Text="{Binding StringIdentifies, Mode=TwoWay}"/>
             <Button x:Name="BTN_Run" HorizontalAlignment="Right" 
                     Margin="0,5,5,5" Width="90" Content="Подсчитать"
-                    Command="{Binding CalcCommand}" 
-                    CommandParameter="{Binding ElementName=TB_Identifier, Path=Text}"/>
+                    Command="{Binding CalcCommand}"/>
         </Grid>
-        <Grid Margin="0,30,0,0">
-            <ListBox x:Name="LB_Content" ItemsSource="{Binding Tests}">
+        <Grid Margin="10,30,10,0" VerticalAlignment="Top" Height="30" Background="#FFEDEDED">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="75"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Текст" HorizontalAlignment="Center" Grid.Column="0" 
+                       VerticalAlignment="Center" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Center" Grid.Column="1"
+                       VerticalAlignment="Center" FontWeight="Bold">
+                <Run Text="Количество"/>
+                <LineBreak/>
+                <Run Text="слов"/>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Center" Grid.Column="2"
+                       VerticalAlignment="Center" FontWeight="Bold">
+                <Run Text="Количество"/>
+                <LineBreak/>
+                <Run Text="гласных"/>
+            </TextBlock>
+        </Grid>
+        <Grid Margin="10,60,10,10">
+            <ListBox x:Name="LB_Content" ItemsSource="{Binding TextInformations}" Background="White"
+                     Margin="0,0,0,0" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Background="AliceBlue" Width="{Binding ElementName=LB_Content, Path=Width, Mode=OneWay}">
+                        <Grid Margin="0,5,0,5">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition x:Name="fistCol" Width="*"/>
+                                <ColumnDefinition x:Name="secondCol" Width="75"/>
+                                <ColumnDefinition x:Name="thirdCol" Width="75"/>
                             </Grid.ColumnDefinitions>
-                            
-                            <TextBlock Text="{Binding Name}" Grid.Column="0"/>
-                            <TextBlock Text="{Binding Age}" Grid.Column="1" HorizontalAlignment="Right"/>
+                            <TextBlock Text="{Binding Text}" Grid.Column="0" 
+                                       TextWrapping="Wrap" Margin="0,0,0,0"/>
+                            <TextBlock Text="{Binding WordCount}" HorizontalAlignment="Center"
+                                       TextAlignment="Center" Width="75" Grid.Column="1"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding VowelCount}" HorizontalAlignment="Center"
+                                       TextAlignment="Center" Width="75" Grid.Column="2"
+                                       VerticalAlignment="Center"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
