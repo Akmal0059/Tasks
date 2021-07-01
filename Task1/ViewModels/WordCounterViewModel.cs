@@ -68,6 +68,7 @@ namespace Task1.ViewModels
             }
             catch
             {
+                MessageBox.Show("Server is not available!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
