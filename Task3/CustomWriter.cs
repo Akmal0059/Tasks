@@ -45,11 +45,6 @@ namespace Task3
             }
             OutputUI outputUI = new OutputUI(OutputText);
             outputUI.ShowDialog();
-            //using (StreamWriter writer = new StreamWriter(@"D:\Download\TMG_Programmers_test_2021 (1)\output.txt"))
-            //{
-            //    writer.Write(OutputText);
-            //}
-            //Process.Start(@"D:\Download\TMG_Programmers_test_2021 (1)\output.txt");
         }
     }
 }
